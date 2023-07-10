@@ -42,8 +42,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calculadora"),
-      ), //AppBar
-      backgroundColor: Colors.white38,
+      ),
+      backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       userInput,
-                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                      style: const TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ),
                   Container(
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                       answer,
                       style: const TextStyle(
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                   )
