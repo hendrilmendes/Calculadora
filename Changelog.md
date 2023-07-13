@@ -4,6 +4,7 @@ Changelog Calculadora
 #### v1.0.3
 - Ajustado campo onde e exibido as operações
 - Ajustes internos
+- Icone para o iOS alterado
 
 ======================================================
 #### v1.0.2
