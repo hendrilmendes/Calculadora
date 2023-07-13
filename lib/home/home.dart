@@ -40,9 +40,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Calculadora"),
-      ),
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
@@ -51,20 +48,20 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(15),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userInput,
-                      style: const TextStyle(fontSize: 18, color: Colors.black),
+                      style: const TextStyle(fontSize: 60, color: Colors.black),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(10),
                     alignment: Alignment.centerRight,
                     child: Text(
                       answer,
                       style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 40,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
@@ -119,8 +116,7 @@ class _HomePageState extends State<HomePage> {
                     return MyButton(
                       buttontapped: () {
                         setState(() {
-                          userInput =
-                              userInput.substring(0, userInput.length - 1);
+                          userInput = userInput.substring(0);
                         });
                       },
                       buttonText: buttons[index],
