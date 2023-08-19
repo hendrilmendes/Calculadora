@@ -15,9 +15,6 @@ Uma calculadora simples escrita em Flutter
 
 ### Download
 
-[<img src="img/get_apkpure.png"
-     alt="Download por Apkpure"
-     height="90">](https://apkpure.com/p/com.github.hendrilmendes.calculadora/)
 [<img src="img/get_github.png"
      alt="Download por GitHub"
      height="90">](https://github.com/hendrilmendes/Calculadora/releases)

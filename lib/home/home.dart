@@ -6,6 +6,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -40,36 +41,38 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Calculadora"),
+      ),
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          Expanded(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(15),
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      userInput,
-                      style: const TextStyle(fontSize: 60, color: Colors.black),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      answer,
-                      style: const TextStyle(
-                          fontSize: 40,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ]),
+          Card(
+            child: Column(children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(15),
+                alignment: Alignment.centerRight,
+                child: Text(
+                  userInput,
+                  style: const TextStyle(fontSize: 60, color: Colors.black),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(10),
+                alignment: Alignment.centerRight,
+                child: Text(
+                  answer,
+                  style: const TextStyle(
+                      fontSize: 40,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ]),
           ),
+          const SizedBox(height: 16),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: GridView.builder(
                 itemCount: buttons.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -149,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                       buttonText: buttons[index],
                       color: isOperator(buttons[index])
                           ? Colors.blueAccent
-                          : Colors.white,
+                          : Colors.blue[50],
                       textColor: isOperator(buttons[index])
                           ? Colors.white
                           : Colors.black,
