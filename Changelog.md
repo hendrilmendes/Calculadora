@@ -1,5 +1,10 @@
 Changelog Calculadora
 ======================================================
+#### v1.1.0
+- Implementado suporte ao tema escuro
+- Correções de bugs
+
+======================================================
 #### v1.0.4
 - Correções e Melhorias
 
