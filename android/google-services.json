@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "573885901268",
+    "project_id": "calculadora-app-a7506",
+    "storage_bucket": "calculadora-app-a7506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573885901268:android:bd99f381e650e2fb864e41",
+        "android_client_info": {
+          "package_name": "com.github.hendrilmendes.calculadora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2kwu2jTrGWF1mDW-s7p_vN8W0_d7u0B4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

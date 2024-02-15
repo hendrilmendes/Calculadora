@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:calculadora/tema/tema.dart';
-import 'package:calculadora/botoes/botoes.dart';
 import 'package:provider/provider.dart';
+import 'package:calculadora/tema/tema.dart';
 
 class HomePage extends StatefulWidget {
-  // ignore: use_key_in_widget_constructors
   const HomePage({super.key});
 
   @override
@@ -15,32 +12,65 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var userInput = '';
-  var answer = '';
-  bool isDarkMode = false;
+  String _input = '';
+  double _result = 0.0;
+  final List<String> _history = [];
 
-  final List<String> buttons = [
-    'C',
-    '+/-',
-    '%',
-    'DEL',
-    '7',
-    '8',
-    '9',
-    '/',
-    '4',
-    '5',
-    '6',
-    'x',
-    '1',
-    '2',
-    '3',
-    '-',
-    '0',
-    '.',
-    '=',
-    '+',
-  ];
+  void _onButtonPressed(String buttonText) {
+    setState(() {
+      if (buttonText == 'C') {
+        _clearInput();
+      } else if (buttonText == '=') {
+        _calculateResult();
+      } else {
+        _input += buttonText;
+      }
+    });
+  }
+
+  void _clearInput() {
+    _input = '';
+    _result = 0.0;
+  }
+
+  void _calculateResult() {
+    try {
+      Parser p = Parser();
+
+      Expression exp = p.parse(_input.replaceAll(',', '.'));
+      ContextModel cm = ContextModel();
+      _result = exp.evaluate(EvaluationType.REAL, cm);
+      _history.add(_input);
+      _input = '';
+    } catch (e) {
+      _result = 0.0;
+      _input = "Expressão Inválida";
+    }
+  }
+
+  Widget _buildButton(String buttonText) {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () => _onButtonPressed(buttonText),
+        child: Text(
+          buttonText,
+          style: const TextStyle(fontSize: 24.0),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDecimalButton() {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () => _onButtonPressed(','),
+        child: const Text(
+          ',',
+          style: TextStyle(fontSize: 24.0),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,158 +78,134 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Calculadora"),
+        title: const Text(
+          'Calculadora',
+          style: TextStyle(
+            fontSize: 24.0,
+          ),
+        ),
         actions: [
           IconButton(
             color: Colors.blue,
-            icon: Icon(themeModel.isDarkMode
-                ? CupertinoIcons.sun_max_fill
-                : CupertinoIcons.moon_fill),
+            icon: Icon(
+              themeModel.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            ),
             onPressed: themeModel.toggleDarkMode,
           ),
         ],
       ),
       body: Column(
-        children: <Widget>[
-          Card(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  alignment: Alignment.centerRight,
+        children: [
+          if (_history.isNotEmpty)
+            const Text(
+              "Histórico",
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
+          Expanded(
+            child: ListView.builder(
+              reverse: true,
+              itemCount: _history.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  alignment: Alignment.bottomRight,
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    userInput,
-                    style: TextStyle(fontSize: userInput.length > 15 ? 40 : 60),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    answer,
+                    _history[index],
                     style: const TextStyle(
-                        fontSize: 40, fontWeight: FontWeight.bold),
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                )
+                );
+              },
+            ),
+          ),
+          if (_history.isNotEmpty) const Divider(),
+          Container(
+            alignment: Alignment.bottomRight,
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              _input,
+              style: const TextStyle(
+                fontSize: 36.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.bottomRight,
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              _result == _result.toInt()
+                  ? _result.toInt().toString()
+                  : _result.toString(),
+              style: const TextStyle(
+                fontSize: 36.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Row(
+              children: [
+                _buildButton('7'),
+                _buildButton('8'),
+                _buildButton('9'),
+                _buildButton('/'),
               ],
             ),
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            flex: 2,
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: buttons.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                // Clear Button
-                if (index == 0) {
-                  return MyButton(
-                    buttontapped: () {
-                      setState(() {
-                        userInput = '';
-                        answer = '0';
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
-                  );
-                }
-                // +/- button
-                else if (index == 1) {
-                  return MyButton(
-                    buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
-                  );
-                }
-                // % Button
-                else if (index == 2) {
-                  return MyButton(
-                    buttontapped: () {
-                      setState(() {
-                        userInput += buttons[index];
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
-                  );
-                }
-                // Delete Button
-                else if (index == 3) {
-                  return MyButton(
-                    buttontapped: () {
-                      setState(() {
-                        userInput = userInput.substring(0);
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: Colors.blue[50],
-                    textColor: Colors.black,
-                  );
-                }
-                // Equal_to Button
-                else if (index == 18) {
-                  return MyButton(
-                    buttontapped: () {
-                      setState(() {
-                        equalPressed();
-                      });
-                    },
-                    buttonText: buttons[index],
-                    color: Colors.orange[700],
-                    textColor: Colors.white,
-                  );
-                }
-                //  other buttons
-                else {
-                  return Container(
-                    alignment: Alignment.center,
-                    child: ClipRect(
-                      child: MyButton(
-                        buttontapped: () {
-                          setState(() {
-                            userInput += buttons[index];
-                          });
-                        },
-                        buttonText: buttons[index],
-                        color: isOperator(buttons[index])
-                            ? Colors.blueAccent
-                            : Colors.blue[50],
-                        textColor: isOperator(buttons[index])
-                            ? Colors.white
-                            : Colors.black,
-                      ),
-                    ),
-                  );
-                }
-              },
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Row(
+              children: [
+                _buildButton('4'),
+                _buildButton('5'),
+                _buildButton('6'),
+                _buildButton('*'),
+              ],
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Row(
+              children: [
+                _buildButton('1'),
+                _buildButton('2'),
+                _buildButton('3'),
+                _buildButton('-'),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () => _onButtonPressed('C'),
+                    child: const Text(
+                      'C',
+                      style: TextStyle(fontSize: 24.0),
+                    ),
+                  ),
+                ),
+                _buildButton('0'),
+                _buildButton('='),
+                _buildDecimalButton(),
+                _buildButton('+'),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
         ],
       ),
     );
-  }
-
-  bool isOperator(String x) {
-    if (x == '/' || x == 'x' || x == '-' || x == '+' || x == '=') {
-      return true;
-    }
-    return false;
-  }
-
-  void equalPressed() {
-    String finaluserinput = userInput;
-    finaluserinput = userInput.replaceAll('x', '*');
-
-    Parser p = Parser();
-    Expression exp = p.parse(finaluserinput);
-    ContextModel cm = ContextModel();
-    double eval = exp.evaluate(EvaluationType.REAL, cm);
-    answer = eval.toString();
   }
 }

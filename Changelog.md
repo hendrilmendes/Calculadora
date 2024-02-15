@@ -1,5 +1,15 @@
 Changelog Calculadora
 ======================================================
+#### v1.2.2
+
+Novo:
+- Novo design
+- Suporte ao Dynamic Colors do Android 12
+
+Correções/Melhorias
+- Correções de bugs e melhorias de desempenho
+
+======================================================
 #### v1.1.0
 - Implementado suporte ao tema escuro
 - Correções de bugs

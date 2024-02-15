@@ -1,9 +1,21 @@
+import 'package:calculadora/firebase_options.dart';
+import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:calculadora/tema/tema.dart';
 import 'package:calculadora/home/home.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
   runApp(const MyApp());
 }
 
@@ -16,17 +28,30 @@ class MyApp extends StatelessWidget {
       create: (_) => ThemeModel(),
       child: Consumer<ThemeModel>(
         builder: (_, theme, __) {
-          return MaterialApp(
-            theme: ThemeData.light(useMaterial3: true).copyWith(
-              textTheme: Typography().black,
-            ),
-            darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-              textTheme: Typography().white,
-            ),
-            themeMode: theme.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            debugShowCheckedModeBanner: false,
-            home: const HomePage(),
-          );
+          return DynamicColorBuilder(
+              builder: (lightColorScheme, darkColorScheme) {
+            return MaterialApp(
+              theme: ThemeData(
+                brightness: Brightness.light,
+                colorScheme: lightColorScheme?.copyWith(
+                  primary: theme.isDarkMode ? Colors.black : Colors.black,
+                ),
+                useMaterial3: true,
+                textTheme: Typography().black.apply(),
+              ),
+              darkTheme: ThemeData(
+                brightness: Brightness.dark,
+                colorScheme: darkColorScheme?.copyWith(
+                  primary: theme.isDarkMode ? Colors.white : Colors.black,
+                ),
+                useMaterial3: true,
+                textTheme: Typography().white.apply(),
+              ),
+              themeMode: theme.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+              debugShowCheckedModeBanner: false,
+              home: const HomePage(),
+            );
+          });
         },
       ),
     );
