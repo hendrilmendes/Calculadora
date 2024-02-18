@@ -3,7 +3,8 @@ Changelog Calculadora
 #### v1.2.2
 
 Novo:
-- Novo design
+- Design Atualizado
+- Veja o histórico dos seus calculos
 - Suporte ao Dynamic Colors do Android 12
 
 Correções/Melhorias
