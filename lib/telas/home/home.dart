@@ -1,4 +1,5 @@
-import 'package:calculadora/historico/historico.dart';
+import 'package:calculadora/telas/config/config.dart';
+import 'package:calculadora/telas/historico/historico.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:provider/provider.dart';
@@ -124,6 +125,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _navigateToSettingsPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
+  }
+
   Widget _buildButton(String buttonText) {
     return Expanded(
       child: Padding(
@@ -172,6 +182,17 @@ class _HomePageState extends State<HomePage> {
     return ['÷', '*', '-', '+', '%', '+/-'].contains(buttonText);
   }
 
+  void handleClick(int item) {
+    switch (item) {
+      case 0:
+        _navigateToHistoryPage(context);
+        break;
+      case 1:
+        _navigateToSettingsPage(context);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeModel = Provider.of<ThemeModel>(context);
@@ -184,7 +205,7 @@ class _HomePageState extends State<HomePage> {
             fontSize: 24.0,
           ),
         ),
-        actions: [
+        actions: <Widget>[
           IconButton(
             color: Colors.blue,
             icon: Icon(
@@ -192,10 +213,12 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: themeModel.toggleDarkMode,
           ),
-          IconButton(
-            color: Colors.blue,
-            icon: const Icon(Icons.history),
-            onPressed: () => _navigateToHistoryPage(context),
+          PopupMenuButton<int>(
+            onSelected: (item) => handleClick(item),
+            itemBuilder: (context) => [
+              const PopupMenuItem<int>(value: 0, child: Text("Histórico")),
+              const PopupMenuItem<int>(value: 1, child: Text("Ajustes")),
+            ],
           ),
         ],
       ),

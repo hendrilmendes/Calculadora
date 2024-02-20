@@ -6,9 +6,11 @@ Novo:
 - Design Atualizado
 - Veja o histórico dos seus calculos
 - Suporte ao Dynamic Colors do Android 12
+- Desative o Dynamic Colors caso não gostar
 
 Correções/Melhorias
 - Correções de bugs e melhorias de desempenho
+- Melhorias visuais
 
 ======================================================
 #### v1.1.0
