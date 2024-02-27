@@ -1,6 +1,6 @@
 Changelog Calculadora
 ======================================================
-#### v1.2.2
+#### v1.2.5
 
 Novo:
 - Design Atualizado
