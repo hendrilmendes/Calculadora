@@ -2,8 +2,6 @@ import 'package:calculadora/telas/config/config.dart';
 import 'package:calculadora/telas/historico/historico.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:provider/provider.dart';
-import 'package:calculadora/tema/tema.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -195,7 +193,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final themeModel = Provider.of<ThemeModel>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -206,13 +203,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: <Widget>[
-          IconButton(
-            color: Colors.blue,
-            icon: Icon(
-              themeModel.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-            ),
-            onPressed: themeModel.toggleDarkMode,
-          ),
           PopupMenuButton<int>(
             onSelected: (item) => handleClick(item),
             itemBuilder: (context) => [
