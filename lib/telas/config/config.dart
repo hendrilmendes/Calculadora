@@ -59,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          _buildCategoryHeader("Personalização", Icons.palette_outlined),
+          _buildCategoryHeader("Interface", Icons.palette_outlined),
           _buildThemeSettings(themeModel),
           _buildDynamicColors(themeModel),
           _buildCategoryHeader("Outros", Icons.more_horiz_outlined),
