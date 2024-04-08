@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,27 +19,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  String appVersion = '';
-  String appBuild = '';
-  String authorApp = '';
-  String descApp = '';
-
-  // Metodo para exibir a versao
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((packageInfo) {
-      setState(() {
-        appVersion = packageInfo.version;
-        appBuild = packageInfo.buildNumber;
-        authorApp = "Hendril Mendes";
-        descApp =
-            "Um projeto amador para um app de notícias que usa a API do Blogger";
-      });
-    });
-
-  }
-
   Future<String> writeImageToStorage(Uint8List feedbackScreenshot) async {
     final Directory output = await getTemporaryDirectory();
     final String screenshotFilePath = '${output.path}/feedback.png';
@@ -145,6 +123,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  Widget _buildReview() {
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
+        title: const Text("Avalie o App"),
+        subtitle: const Text("Faça uma avaliação do nosso app"),
+        leading: const Icon(Icons.rate_review_outlined),
+        onTap: () async {
+          final InAppReview inAppReview = InAppReview.instance;
+
+          if (await inAppReview.isAvailable()) {
+            inAppReview.requestReview();
+          }
+        },
+      ),
+    );
+  }
+
   Widget _buildSupportSettings() {
     return Card(
       clipBehavior: Clip.hardEdge,
@@ -171,25 +168,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             );
             await FlutterEmailSender.send(email);
           });
-        },
-      ),
-    );
-  }
-
-  Widget _buildReview() {
-    return Card(
-      clipBehavior: Clip.hardEdge,
-      margin: const EdgeInsets.all(8.0),
-      child: ListTile(
-        title: const Text("Avalie o App"),
-        subtitle: const Text("Faça uma avaliação do nosso app"),
-        leading: const Icon(Icons.rate_review_outlined),
-        onTap: () async {
-          final InAppReview inAppReview = InAppReview.instance;
-
-          if (await inAppReview.isAvailable()) {
-            inAppReview.requestReview();
-          }
         },
       ),
     );
