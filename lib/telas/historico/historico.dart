@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryScreen extends StatelessWidget {
   final List<String> history;
@@ -9,7 +10,7 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Histórico"),
+        title: Text(AppLocalizations.of(context)!.history),
       ),
       body: ListView.builder(
         itemCount: history.length,

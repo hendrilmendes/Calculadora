@@ -1,6 +1,7 @@
 import 'package:calculadora/telas/config/config.dart';
 import 'package:calculadora/telas/historico/historico.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class HomePage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         _result = evalResult;
       } else {
         _result = 0.0;
-        _input = "Expressão Inválida";
+        _input = "AppLocalizations.of(context)!.invalid";
       }
 
       _history.add(_input);
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       setState(() {
         _result = 0.0;
-        _input = "Expressão Inválida";
+        _input = "AppLocalizations.of(context)!.invalid";
       });
     }
   }
@@ -93,12 +94,12 @@ class _HomePageState extends State<HomePage> {
           _result = evalResult;
         } else {
           _result = 0.0;
-          _input = "Expressão Inválida";
+          _input = "AppLocalizations.of(context)!.invalid";
         }
       } catch (e) {
         setState(() {
           _result = 0.0;
-          _input = "Expressão Inválida";
+          _input = "AppLocalizations.of(context)!.invalid";
         });
       }
     }
@@ -193,12 +194,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Calculadora',
-          style: TextStyle(
+        title: Text(
+          AppLocalizations.of(context)!.appName,
+          style: const TextStyle(
             fontSize: 24.0,
           ),
         ),
@@ -206,8 +206,14 @@ class _HomePageState extends State<HomePage> {
           PopupMenuButton<int>(
             onSelected: (item) => handleClick(item),
             itemBuilder: (context) => [
-              const PopupMenuItem<int>(value: 0, child: Text("Histórico")),
-              const PopupMenuItem<int>(value: 1, child: Text("Ajustes")),
+              PopupMenuItem<int>(
+                value: 0,
+                child: Text(AppLocalizations.of(context)!.history),
+              ),
+              PopupMenuItem<int>(
+                value: 1,
+                child: Text(AppLocalizations.of(context)!.settings),
+              ),
             ],
           ),
         ],
