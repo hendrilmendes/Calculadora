@@ -24,6 +24,9 @@ Uma calculadora simples escrita em Flutter.
 ### Recursos:
 
 * App feito em Flutter, disponível para iOS, Windows, Linux, macOS e Android
+* Histórico de operações
+* Dynamic Colors
+* Modo Escuro
 ##
 
 ### O que há de novo?
