@@ -4,7 +4,7 @@ Changelog Calculadora
 #### v1.2.6
 
 Correções/Melhorias
-- Correções de bugs e melhorias de desempenho
+- Correções e melhorias internas
 
 ======================================================
 #### v1.2.5
