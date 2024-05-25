@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                   primary: themeModel.isDarkMode ? Colors.black : Colors.black,
                 ),
                 useMaterial3: true,
-                textTheme: Typography().black.apply(),
+                textTheme: Typography().black.apply(fontFamily: 'OpenSans'),
               ),
               darkTheme: ThemeData(
                 brightness: Brightness.dark,
@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
                   primary: themeModel.isDarkMode ? Colors.white : Colors.black,
                 ),
                 useMaterial3: true,
-                textTheme: Typography().white.apply(),
+                textTheme: Typography().white.apply(fontFamily: 'OpenSans'),
               ),
               themeMode: _getThemeMode(themeModel.themeMode),
               debugShowCheckedModeBanner: false,

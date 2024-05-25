@@ -16,21 +16,31 @@ class _HomePageState extends State<HomePage> {
   String _input = '';
   double _result = 0.0;
   final List<String> _history = [];
+  bool _isLastButtonEqual = false;
 
   void _onButtonPressed(String buttonText) {
     setState(() {
-      if (buttonText == 'C') {
+      if (buttonText == 'AC') {
         _clearInput();
       } else if (buttonText == '=') {
-        _calculateResult();
+        if (_input.isNotEmpty) {
+          _calculateResult();
+          _input = _result.toString();
+          _isLastButtonEqual = true;
+        }
       } else if (buttonText == '%') {
         _calculatePercentage();
-        _input += buttonText;
-      } else if (buttonText == '+/-') {
-        _toggleSign();
       } else if (buttonText == 'DEL') {
-        _deleteLastOperation();
+        _deleteLastCharacter();
       } else {
+        if (_isLastButtonEqual) {
+          if (_isOperation(buttonText)) {
+            _input = _result.toString();
+          } else {
+            _input = '';
+          }
+          _isLastButtonEqual = false;
+        }
         buttonText = buttonText == '÷' ? '/' : buttonText;
         _input += buttonText;
       }
@@ -41,10 +51,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _input = '';
       _result = 0.0;
+      _isLastButtonEqual = false;
     });
   }
 
-  void _deleteLastOperation() {
+  void _deleteLastCharacter() {
     setState(() {
       if (_input.isNotEmpty) {
         _input = _input.substring(0, _input.length - 1);
@@ -55,29 +66,19 @@ class _HomePageState extends State<HomePage> {
   void _calculateResult() {
     try {
       Parser p = Parser();
-
-      if (_input.contains('%')) {
-        _calculatePercentage();
-        _input = _result.toString();
-      }
-
       Expression exp = p.parse(_input.replaceAll(',', '.'));
       ContextModel cm = ContextModel();
       double evalResult = exp.evaluate(EvaluationType.REAL, cm);
 
-      if (evalResult.isFinite) {
+      setState(() {
         _result = evalResult;
-      } else {
-        _result = 0.0;
-        _input = "AppLocalizations.of(context)!.invalid";
-      }
-
-      _history.add(_input);
-      _input = '';
+        _history.add('$_input = $_result');
+        _input = '';
+      });
     } catch (e) {
       setState(() {
         _result = 0.0;
-        _input = "AppLocalizations.of(context)!.invalid";
+        _input = AppLocalizations.of(context)!.invalid;
       });
     }
   }
@@ -85,33 +86,17 @@ class _HomePageState extends State<HomePage> {
   void _calculatePercentage() {
     if (_input.isNotEmpty) {
       try {
-        Parser p = Parser();
-        Expression exp = p.parse(_input.replaceAll('%', '*0.01'));
-        ContextModel cm = ContextModel();
-        double evalResult = exp.evaluate(EvaluationType.REAL, cm);
-
-        if (evalResult.isFinite) {
-          _result = evalResult;
-        } else {
-          _result = 0.0;
-          _input = "AppLocalizations.of(context)!.invalid";
-        }
+        double currentValue = double.parse(_input);
+        setState(() {
+          _result = currentValue / 100;
+          _input = _result.toString();
+        });
       } catch (e) {
         setState(() {
           _result = 0.0;
-          _input = "AppLocalizations.of(context)!.invalid";
+          _input = AppLocalizations.of(context)!.invalid;
         });
       }
-    }
-  }
-
-  void _toggleSign() {
-    if (_input.isNotEmpty) {
-      double value = double.tryParse(_input) ?? 0.0;
-      setState(() {
-        _result = -value;
-        _input = _result.toString();
-      });
     }
   }
 
@@ -134,22 +119,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildButton(String buttonText) {
+    final bool isEqualButton = buttonText == '=';
+    final bool isOperationButton = _isOperation(buttonText);
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child: ElevatedButton(
           onPressed: () => _onButtonPressed(buttonText),
           style: ElevatedButton.styleFrom(
-            backgroundColor: _isOperation(buttonText) ? Colors.blue : null,
+            backgroundColor: isEqualButton ? Colors.blue : null,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
             ),
             textStyle: const TextStyle(fontSize: 24.0),
             padding: const EdgeInsets.symmetric(vertical: 20.0),
           ),
-          child: Text(
-            buttonText,
-          ),
+          child: buttonText == 'DEL'
+              ? const Icon(
+                  Icons.backspace_outlined,
+                  color: Colors.blue,
+                  size: 24.0,
+                )
+              : Text(
+                  buttonText,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: isOperationButton && !isEqualButton
+                        ? Colors.blue
+                        : null,
+                  ),
+                ),
         ),
       ),
     );
@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool _isOperation(String buttonText) {
-    return ['÷', '*', '-', '+', '%', '+/-'].contains(buttonText);
+    return ['÷', '*', '-', '+', '%'].contains(buttonText);
   }
 
   void handleClick(int item) {
@@ -251,10 +251,18 @@ class _HomePageState extends State<HomePage> {
                 const Divider(),
                 Row(
                   children: [
+                    _buildButton('AC'),
+                    _buildButton('DEL'),
+                    _buildButton('%'),
+                    _buildButton('÷'),
+                  ],
+                ),
+                Row(
+                  children: [
                     _buildButton('7'),
                     _buildButton('8'),
                     _buildButton('9'),
-                    _buildButton('÷'),
+                    _buildButton('*'),
                   ],
                 ),
                 Row(
@@ -262,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                     _buildButton('4'),
                     _buildButton('5'),
                     _buildButton('6'),
-                    _buildButton('*'),
+                    _buildButton('-'),
                   ],
                 ),
                 Row(
@@ -270,21 +278,12 @@ class _HomePageState extends State<HomePage> {
                     _buildButton('1'),
                     _buildButton('2'),
                     _buildButton('3'),
-                    _buildButton('-'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    _buildButton('+/-'),
-                    _buildButton('0'),
-                    _buildButton('%'),
                     _buildButton('+'),
                   ],
                 ),
                 Row(
                   children: [
-                    _buildButton('C'),
-                    _buildButton('DEL'),
+                    _buildButton('0'),
                     _buildDecimalButton(),
                     _buildButton('='),
                   ],

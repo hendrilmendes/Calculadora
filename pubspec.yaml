@@ -2,7 +2,7 @@ name: calculadora
 description: "Uma calculadora simples escrita em Flutter."
 publish_to: 'none'
 
-version: 1.2.6+30
+version: 1.2.7+31
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -25,9 +25,9 @@ dependencies:
         ref: master
 
 # Firebase
-  firebase_core: ^2.31.0
-  firebase_crashlytics: ^3.5.5
-  firebase_performance: ^0.9.4+5
+  firebase_core: ^2.31.1
+  firebase_crashlytics: ^3.5.6
+  firebase_performance: ^0.9.4+6
 
 # HTTP
   http: ^1.2.1
@@ -68,3 +68,8 @@ flutter:
 
   assets:
     - assets/img/
+
+fonts:
+  - family: OpenSans
+    fonts:
+      - asset: assets/fonts/OpenSans.ttf

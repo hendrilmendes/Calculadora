@@ -1,6 +1,12 @@
 Changelog Calculadora
 
 ======================================================
+
+#### v1.2.7
+
+Correções/Melhorias
+- Corrigido todos bugs encontrados
+
 #### v1.2.6
 
 Correções/Melhorias
