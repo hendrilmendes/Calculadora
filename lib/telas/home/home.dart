@@ -1,8 +1,8 @@
+import 'package:calculadora/logica/logica.dart';
 import 'package:calculadora/telas/config/config.dart';
 import 'package:calculadora/telas/historico/historico.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,17 +21,29 @@ class _HomePageState extends State<HomePage> {
   void _onButtonPressed(String buttonText) {
     setState(() {
       if (buttonText == 'AC') {
-        _clearInput();
+        CalculatorLogica.clearInput(
+          context: context,
+          input: _input,
+          setInput: (value) => _input = value,
+          setResult: (value) => _result = value,
+          setIsLastButtonEqual: (value) => _isLastButtonEqual = value,
+        );
       } else if (buttonText == '=') {
         if (_input.isNotEmpty) {
-          _calculateResult();
-          _input = _result.toString();
-          _isLastButtonEqual = true;
+          CalculatorLogica.calculateResult(
+            context: context,
+            input: _input,
+            setInput: (value) => _input = value,
+            setResult: (value) => _result = value,
+            history: _history,
+            setIsLastButtonEqual: (value) => _isLastButtonEqual = value,
+          );
         }
-      } else if (buttonText == '%') {
-        _calculatePercentage();
       } else if (buttonText == 'DEL') {
-        _deleteLastCharacter();
+        CalculatorLogica.deleteLastCharacter(
+          input: _input,
+          setInput: (value) => _input = value,
+        );
       } else {
         if (_isLastButtonEqual) {
           if (_isOperation(buttonText)) {
@@ -47,75 +59,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _clearInput() {
-    setState(() {
-      _input = '';
-      _result = 0.0;
-      _isLastButtonEqual = false;
-    });
-  }
-
-  void _deleteLastCharacter() {
-    setState(() {
-      if (_input.isNotEmpty) {
-        _input = _input.substring(0, _input.length - 1);
-      }
-    });
-  }
-
-  void _calculateResult() {
-    try {
-      Parser p = Parser();
-      Expression exp = p.parse(_input.replaceAll(',', '.'));
-      ContextModel cm = ContextModel();
-      double evalResult = exp.evaluate(EvaluationType.REAL, cm);
-
-      setState(() {
-        _result = evalResult;
-        _history.add('$_input = $_result');
-        _input = '';
-      });
-    } catch (e) {
-      setState(() {
-        _result = 0.0;
-        _input = AppLocalizations.of(context)!.invalid;
-      });
-    }
-  }
-
-  void _calculatePercentage() {
-    if (_input.isNotEmpty) {
-      try {
-        double currentValue = double.parse(_input);
-        setState(() {
-          _result = currentValue / 100;
-          _input = _result.toString();
-        });
-      } catch (e) {
-        setState(() {
-          _result = 0.0;
-          _input = AppLocalizations.of(context)!.invalid;
-        });
-      }
-    }
-  }
-
-  void _navigateToHistoryPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HistoryScreen(history: _history),
-      ),
-    );
-  }
-
-  void _navigateToSettingsPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SettingsScreen(),
-      ),
-    );
+  bool _isOperation(String buttonText) {
+    return ['÷', '*', '-', '+', '%'].contains(buttonText);
   }
 
   Widget _buildButton(String buttonText) {
@@ -177,21 +122,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  bool _isOperation(String buttonText) {
-    return ['÷', '*', '-', '+', '%'].contains(buttonText);
-  }
-
-  void handleClick(int item) {
-    switch (item) {
-      case 0:
-        _navigateToHistoryPage(context);
-        break;
-      case 1:
-        _navigateToSettingsPage(context);
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,15 +134,28 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           PopupMenuButton<int>(
-            onSelected: (item) => handleClick(item),
             itemBuilder: (context) => [
               PopupMenuItem<int>(
-                value: 0,
                 child: Text(AppLocalizations.of(context)!.history),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HistoryScreen(history: _history),
+                    ),
+                  );
+                },
               ),
               PopupMenuItem<int>(
-                value: 1,
                 child: Text(AppLocalizations.of(context)!.settings),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsScreen(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -241,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     _result == _result.toInt()
                         ? _result.toInt().toString()
-                        : _result.toString(),
+                        : _result.toString().replaceAll('.', ','),
                     style: const TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold,

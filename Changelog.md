@@ -2,6 +2,11 @@ Changelog Calculadora
 
 ======================================================
 
+#### v1.2.8
+
+Correções/Melhorias
+- Corrigido bug relacionado a operações com porcentagem
+
 #### v1.2.7
 
 Correções/Melhorias
