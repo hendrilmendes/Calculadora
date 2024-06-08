@@ -18,7 +18,6 @@ Uma calculadora simples escrita em Flutter.
 [<img src="img/get_google-play.png"
      alt="Baixar pela Google Play"
      height="90">](https://play.google.com/store/apps/details?id=com.github.hendrilmendes.calculadora)
-     (EM BREVE)
 ##
 
 ### Recursos:
