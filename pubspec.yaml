@@ -25,9 +25,9 @@ dependencies:
         ref: master
 
 # Firebase
-  firebase_core: ^3.0.0
-  firebase_crashlytics: ^4.0.0
-  firebase_performance: ^0.10.0
+  firebase_core: ^3.1.0
+  firebase_crashlytics: ^4.0.1
+  firebase_performance: ^0.10.0+1
 
 # HTTP
   http: ^1.2.1

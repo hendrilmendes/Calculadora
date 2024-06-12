@@ -3,7 +3,7 @@ Uma calculadora simples escrita em Flutter.
 
 ### Screenshots
 
-<img src="screenshots/preview.jpg?raw=true" width="32%"> <img src="screenshots/preview2.jpg?raw=true" width="32%">
+<img src="screenshots/preview.jpeg?raw=true" width="32%"> <img src="screenshots/preview2.jpeg?raw=true" width="32%"> <img src="screenshots/preview3.jpeg?raw=true" width="32%">
 
 ##
 
