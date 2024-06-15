@@ -10,7 +10,6 @@ Uma calculadora simples escrita em Flutter.
 ### Versão
 [![made-with-flutter](https://img.shields.io/badge/Made%20with-Flutter-1f425f.svg)](https://flutter.dev/)
 ![Release](https://img.shields.io/github/v/release/hendrilmendes/Calculadora)
-![GitHub all releases](https://img.shields.io/github/downloads/hendrilmendes/Calculadora/total?color=white&style=plastic)
 ##
 
 ### Download

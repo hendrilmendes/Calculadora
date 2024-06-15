@@ -1,6 +1,7 @@
-import 'package:calculadora/logica/logica.dart';
-import 'package:calculadora/telas/config/config.dart';
-import 'package:calculadora/telas/historico/historico.dart';
+
+import 'package:calculadora/logic/logic.dart';
+import 'package:calculadora/screens/history/history.dart';
+import 'package:calculadora/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   void _onButtonPressed(String buttonText) {
     setState(() {
       if (buttonText == 'AC') {
-        CalculatorLogica.clearInput(
+        CalculatorLogic.clearInput(
           context: context,
           input: _input,
           setInput: (value) => _input = value,
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         );
       } else if (buttonText == '=') {
         if (_input.isNotEmpty) {
-          CalculatorLogica.calculateResult(
+          CalculatorLogic.calculateResult(
             context: context,
             input: _input,
             setInput: (value) => _input = value,
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           );
         }
       } else if (buttonText == 'DEL') {
-        CalculatorLogica.deleteLastCharacter(
+        CalculatorLogic.deleteLastCharacter(
           input: _input,
           setInput: (value) => _input = value,
         );

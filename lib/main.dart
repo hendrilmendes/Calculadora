@@ -1,12 +1,12 @@
 import 'package:calculadora/firebase_options.dart';
-import 'package:calculadora/telas/home/home.dart';
+import 'package:calculadora/screens/home/home.dart';
+import 'package:calculadora/theme/theme.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback/feedback.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:calculadora/tema/tema.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 

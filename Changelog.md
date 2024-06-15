@@ -2,6 +2,13 @@ Changelog Calculadora
 
 ======================================================
 
+#### v1.2.9
+
+Correções/Melhorias
+- Ajustes internos
+
+======================================================
+
 #### v1.2.8
 
 Correções/Melhorias

@@ -35,5 +35,6 @@
     "after": "DEPOIS",
     "download": "BAIXAR",
     "noUpdate": "Nenhuma atualização disponível",
-    "noUpdateSub": "Tudo em dias parceiro 🤠"
+    "noUpdateSub": "Tudo em dias parceiro 🤠",
+    "alreadyReviewed": "Você já avaliou o app"
 }

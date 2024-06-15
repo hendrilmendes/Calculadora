@@ -2,7 +2,7 @@ name: calculadora
 description: "Uma calculadora simples escrita em Flutter."
 publish_to: 'none'
 
-version: 1.2.8+32
+version: 1.2.9+33
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -49,6 +49,9 @@ dependencies:
 
 # Shared Preferences
   shared_preferences: ^2.2.3
+
+# Toast
+  fluttertoast: ^8.2.6
 
 # Url Launcher
   url_launcher: ^6.3.0
