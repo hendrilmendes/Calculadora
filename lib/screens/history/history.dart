@@ -12,14 +12,21 @@ class HistoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.history),
       ),
-      body: ListView.builder(
-        itemCount: history.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(history[index]),
-          );
-        },
-      ),
+      body: history.isEmpty
+          ? Center(
+              child: Text(
+                AppLocalizations.of(context)!.noHistory,
+                style: const TextStyle(fontSize: 18),
+              ),
+            )
+          : ListView.builder(
+              itemCount: history.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(history[index]),
+                );
+              },
+            ),
     );
   }
 }
