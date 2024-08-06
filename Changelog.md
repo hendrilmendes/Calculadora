@@ -4,7 +4,7 @@ Changelog Calculadora
 
 #### v1.3.0
 Novo:
-- As operção agora são calculadas automáticamente
+- As operações agora são calculadas automaticamente
 
 Correções/Melhorias
 - Correção e melhorias
