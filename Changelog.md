@@ -2,6 +2,15 @@ Changelog Calculadora
 
 ======================================================
 
+#### v1.3.0
+Novo:
+- As operção agora são calculadas automáticamente
+
+Correções/Melhorias
+- Correção e melhorias
+
+======================================================
+
 #### v1.2.10
 
 Correções/Melhorias
