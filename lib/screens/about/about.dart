@@ -126,7 +126,7 @@ class _AboutPageState extends State<AboutPage> {
                       title: Text(AppLocalizations.of(context)!.openSource),
                       subtitle:
                           Text(AppLocalizations.of(context)!.openSourceSub),
-                      leading: const Icon(Icons.flutter_dash_outlined),
+                      leading: const Icon(Icons.folder_open_outlined),
                       onTap: () {
                         Navigator.push(
                           context,

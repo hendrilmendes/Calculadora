@@ -1,4 +1,13 @@
-Changelog Calculadora
+Changelog Calculador
+======================================================
+
+#### v1.4.0 - Em desenvolvimento
+Novo:
+- Novo design para tela de atualizações
+- Implementado suporte a operações cientificas
+
+Correções/Melhorias
+- Melhorias visuais
 
 ======================================================
 

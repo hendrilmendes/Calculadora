@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   double _result = 0.0;
   final List<String> _history = [];
   bool _isLastButtonEqual = false;
+  bool _isScientific = false;
 
   void _onButtonPressed(String buttonText) {
     setState(() {
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         }
         buttonText = buttonText == '÷' ? '/' : buttonText;
         _input += buttonText;
-        // Calculate the result as the user types
+        // Calcula o resultado enquanto o usuário digita
         try {
           String formattedInput = _input.replaceAll(',', '.');
           Parser p = Parser();
@@ -74,6 +75,12 @@ class _HomePageState extends State<HomePage> {
 
   bool _isOperation(String buttonText) {
     return ['÷', '*', '-', '+', '%'].contains(buttonText);
+  }
+
+  void _toggleScientificMode() {
+    setState(() {
+      _isScientific = !_isScientific;
+    });
   }
 
   @override
@@ -146,7 +153,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const Divider(),
-                CalculatorButtons(onButtonPressed: _onButtonPressed),
+                CalculatorButtons(
+                  onButtonPressed: _onButtonPressed,
+                  isScientific: _isScientific,
+                  onToggleScientificMode: _toggleScientificMode,
+                ),
               ],
             ),
           ),

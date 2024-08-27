@@ -60,6 +60,15 @@ class CalculatorLogic {
         },
       );
 
+      // Substituir funções científicas com suas respectivas expressões
+      formattedInput = formattedInput
+          .replaceAll('√', 'sqrt(') + ')' 
+          .replaceAll('^', '**')
+          .replaceAll('sin', 'sin')
+          .replaceAll('cos', 'cos')
+          .replaceAll('tan', 'tan')
+          .replaceAll('log', 'log');
+
       Parser p = Parser();
       Expression exp = p.parse(formattedInput);
       ContextModel cm = ContextModel();

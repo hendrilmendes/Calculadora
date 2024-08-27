@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 class CalculatorButtons extends StatelessWidget {
   final void Function(String) onButtonPressed;
+  final bool isScientific;
+  final VoidCallback onToggleScientificMode;
 
-  const CalculatorButtons({super.key, required this.onButtonPressed});
+  const CalculatorButtons({
+    super.key,
+    required this.onButtonPressed,
+    required this.isScientific,
+    required this.onToggleScientificMode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +24,24 @@ class CalculatorButtons extends StatelessWidget {
             _buildButton('÷'),
           ],
         ),
+        if (isScientific) ...[
+          Row(
+            children: [
+              _buildButton('sin'),
+              _buildButton('cos'),
+              _buildButton('tan'),
+              _buildButton('log'),
+            ],
+          ),
+          Row(
+            children: [
+              _buildButton('√'),
+              _buildButton('^'),
+              _buildButton('('),
+              _buildButton(')'),
+            ],
+          ),
+        ],
         Row(
           children: [
             _buildButton('7'),
@@ -43,6 +68,7 @@ class CalculatorButtons extends StatelessWidget {
         ),
         Row(
           children: [
+            _buildToggleButton(),
             _buildButton('0'),
             _buildDecimalButton(),
             _buildButton('='),
@@ -52,13 +78,35 @@ class CalculatorButtons extends StatelessWidget {
     );
   }
 
+  Widget _buildToggleButton() {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.all(isScientific ? 1.0 : 2.0),
+        child: ElevatedButton(
+          onPressed: onToggleScientificMode,
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100.0),
+            ),
+            textStyle: TextStyle(fontSize: isScientific ? 16.0 : 18.0),
+            padding: EdgeInsets.symmetric(vertical: isScientific ? 12.0 : 20.0),
+          ),
+          child: Icon(
+            isScientific ? Icons.science_outlined : Icons.calculate_outlined,
+            size: isScientific ? 20.0 : 24.0,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildButton(String buttonText) {
     final bool isEqualButton = buttonText == '=';
     final bool isOperationButton = _isOperation(buttonText);
 
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: EdgeInsets.all(isScientific ? 1.0 : 2.0),
         child: ElevatedButton(
           onPressed: () => onButtonPressed(buttonText),
           style: ElevatedButton.styleFrom(
@@ -66,19 +114,19 @@ class CalculatorButtons extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
             ),
-            textStyle: const TextStyle(fontSize: 24.0),
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            textStyle: TextStyle(fontSize: isScientific ? 20.0 : 24.0),
+            padding: EdgeInsets.symmetric(vertical: isScientific ? 12.0 : 20.0),
           ),
           child: buttonText == 'DEL'
-              ? const Icon(
+              ? Icon(
                   Icons.backspace_outlined,
                   color: Colors.blue,
-                  size: 24.0,
+                  size: isScientific ? 20.0 : 24.0,
                 )
               : Text(
                   buttonText,
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: isScientific ? 20.0 : 24.0,
                     color: isOperationButton && !isEqualButton
                         ? Colors.blue
                         : null,
@@ -92,19 +140,19 @@ class CalculatorButtons extends StatelessWidget {
   Widget _buildDecimalButton() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: EdgeInsets.all(isScientific ? 1.0 : 2.0),
         child: ElevatedButton(
           onPressed: () => onButtonPressed(','),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
             ),
-            textStyle: const TextStyle(fontSize: 24.0),
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            textStyle: TextStyle(fontSize: isScientific ? 20.0 : 24.0),
+            padding: EdgeInsets.symmetric(vertical: isScientific ? 12.0 : 20.0),
           ),
-          child: const Text(
+          child: Text(
             ',',
-            style: TextStyle(fontSize: 24.0),
+            style: TextStyle(fontSize: isScientific ? 20.0 : 24.0),
           ),
         ),
       ),
