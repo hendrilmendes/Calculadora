@@ -25,6 +25,7 @@ Uma calculadora simples escrita em Flutter.
 * Histórico de operações
 * Dynamic Colors
 * Modo Escuro
+* Operações Científicas
 ##
 
 ### O que há de novo?
