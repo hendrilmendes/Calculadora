@@ -1,7 +1,7 @@
 Changelog Calculador
 ======================================================
 
-#### v1.4.0 - Em desenvolvimento
+#### v1.4.0
 Novo:
 - Novo design para tela de atualizações
 - Implementado suporte a operações cientificas
