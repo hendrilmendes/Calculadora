@@ -1,87 +1,134 @@
-Changelog Calculador
+Changelog
+
 ======================================================
 
-#### v1.4.0
-Novo:
+## [1.4.0](https://github.com/hendrilmendes/Calculadora/compare/1.3.0..1.4.0)
+
+## Alterações
+
+### Correções
+
+- Melhorias visuais
+
+### Features
+
 - Novo design para tela de atualizações
 - Implementado suporte a operações científicas
 
-Correções/Melhorias
-- Melhorias visuais
-
 ======================================================
 
-#### v1.3.0
-Novo:
-- As operações agora são calculadas automaticamente
+## [1.3.0](https://github.com/hendrilmendes/Calculadora/compare/1.2.10..1.3.0)
 
-Correções/Melhorias
+## Alterações
+
+### Correções
+
 - Correção e melhorias
 
-======================================================
+### Features
 
-#### v1.2.10
-
-Correções/Melhorias
-- Correção de bugs
+- As operações agora são calculadas automaticamente
 
 ======================================================
 
-#### v1.2.9
+## [1.2.10](https://github.com/hendrilmendes/Calculadora/compare/1.2.8..1.2.10)
 
-Correções/Melhorias
+## Alterações
+
+### Correções
+
 - Ajustes internos
 
 ======================================================
 
-#### v1.2.8
+## [1.2.8](https://github.com/hendrilmendes/Calculadora/compare/1.2.7..1.2.8)
 
-Correções/Melhorias
+## Alterações
+
+### Correções
+
 - Corrigido bug relacionado a operações com porcentagem
 
-#### v1.2.7
+======================================================
 
-Correções/Melhorias
+## [1.2.7](https://github.com/hendrilmendes/Calculadora/compare/1.2.6..1.2.7)
+
+## Alterações
+
+### Correções
+
 - Corrigido todos bugs encontrados
 
-#### v1.2.6
-
-Correções/Melhorias
-- Correções e melhorias internas
-
 ======================================================
-#### v1.2.5
 
-Novo:
+## [1.2.6](https://github.com/hendrilmendes/Calculadora/compare/1.1.0..1.2.6)
+
+## Alterações
+
+### Correções
+
+- Correções de bugs e melhorias de desempenho
+- Melhorias visuais
+
+### Features
+
 - Design Atualizado
 - Veja o histórico dos seus calculos
 - Suporte ao Dynamic Colors do Android 12
 
-Correções/Melhorias
-- Correções de bugs e melhorias de desempenho
-- Melhorias visuais
-
 ======================================================
-#### v1.1.0
-- Implementado suporte ao tema escuro
+
+## [1.1.0](https://github.com/hendrilmendes/Calculadora/compare/1.0.4..1.1.0)
+
+## Alterações
+
+### Correções
+
 - Correções de bugs
 
+### Features
+
+- Implementado suporte ao tema escuro
+
 ======================================================
-#### v1.0.4
+
+## [1.0.4](https://github.com/hendrilmendes/Calculadora/compare/1.0.3..1.0.4)
+
+## Alterações
+
+### Correções
+
 - Correções e Melhorias
 
 ======================================================
-#### v1.0.3
+
+## [1.0.3](https://github.com/hendrilmendes/Calculadora/compare/1.0.2..1.0.3)
+
+## Alterações
+
+### Correções
+
 - Ajustado campo onde e exibido as operações
 - Ajustes internos
 - Icone para o iOS alterado
 
 ======================================================
-#### v1.0.2
+
+## [1.0.2](https://github.com/hendrilmendes/Calculadora/compare/1.0.0..1.0.2)
+
+## Alterações
+
+### Correções
+
 - Ajustes na interface
 - Implementado suporte aos ícones dinâmicos do Android 12
 - Atualizado bibliotecas
 
 ======================================================
-#### v1.0.0
+## [1.0.0]
+
+## Alterações
+
+### Correções
+
 - Primeira Versão
