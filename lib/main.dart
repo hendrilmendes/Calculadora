@@ -1,6 +1,7 @@
 import 'package:calculadora/firebase_options.dart';
 import 'package:calculadora/screens/home/home.dart';
 import 'package:calculadora/theme/theme.dart';
+import 'package:calculadora/updater/updater.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback/feedback.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 main() async {
@@ -57,6 +59,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    
+    Updater.checkUpdateApp(context);
+
     return ChangeNotifierProvider(
       create: (_) => ThemeModel(),
       child: Consumer<ThemeModel>(
@@ -75,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                   primary: themeModel.isDarkMode ? Colors.black : Colors.black,
                 ),
                 useMaterial3: true,
-                textTheme: Typography().black.apply(fontFamily: 'OpenSans'),
+                textTheme: Typography().black.apply(fontFamily: GoogleFonts.openSans().fontFamily),
               ),
               darkTheme: ThemeData(
                 brightness: Brightness.dark,
@@ -83,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                   primary: themeModel.isDarkMode ? Colors.white : Colors.black,
                 ),
                 useMaterial3: true,
-                textTheme: Typography().white.apply(fontFamily: 'OpenSans'),
+                textTheme: Typography().white.apply(fontFamily: GoogleFonts.openSans().fontFamily),
               ),
               themeMode: _getThemeMode(themeModel.themeMode),
               debugShowCheckedModeBanner: false,

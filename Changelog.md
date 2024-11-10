@@ -2,6 +2,16 @@ Changelog
 
 ======================================================
 
+## [1.5.0](https://github.com/hendrilmendes/Calculadora/compare/1.4.0..1.5.0)
+
+## Alterações
+
+- Melhorias internas
+- Melhorias no código
+- Melhorias no sistema de atualizações
+
+======================================================
+
 ## [1.4.0](https://github.com/hendrilmendes/Calculadora/compare/1.3.0..1.4.0)
 
 ## Alterações
