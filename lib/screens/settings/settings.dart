@@ -1,7 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:calculadora/theme/theme.dart';
 import 'package:calculadora/widgets/settings/about.dart';
-import 'package:calculadora/widgets/settings/category.dart';
 import 'package:calculadora/widgets/settings/dynamic_colors.dart';
 import 'package:calculadora/widgets/settings/review.dart';
 import 'package:calculadora/widgets/settings/support.dart';
@@ -46,20 +45,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.settings),
+        title: Text(
+          AppLocalizations.of(context)!.settings,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: ListView(
         children: [
-          buildCategoryHeader(
-              AppLocalizations.of(context)!.interface, Icons.palette_outlined),
-          ThemeSettings(themeModel: themeModel),
-          if (_isAndroid12) const DynamicColorsSettings(),
-          buildCategoryHeader(
-              AppLocalizations.of(context)!.outhers, Icons.more_horiz_outlined),
-          buildUpdateSettings(context),
-          buildReviewSettings(context),
-          buildSupportSettings(context),
-          buildAboutSettings(context),
+          const SizedBox(height: 8),
+          _buildSectionCard(
+            context,
+            Column(
+              children: [
+                ThemeSettings(themeModel: themeModel),
+                if (_isAndroid12) const DynamicColorsSettings(),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          _buildSectionCard(
+            context,
+            Column(
+              children: [
+                buildUpdateSettings(context),
+                buildReviewSettings(context),
+                buildSupportSettings(context),
+                buildAboutSettings(context),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionCard(
+    BuildContext context,
+    Widget child,
+  ) {
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      color: Theme.of(context).listTileTheme.tileColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          child,
         ],
       ),
     );

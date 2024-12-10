@@ -2,6 +2,21 @@ Changelog
 
 ======================================================
 
+## [1.6.0](https://github.com/hendrilmendes/Calculadora/compare/1.5.0..1.6.0)
+
+## Alterações
+
+### Features
+
+- Novo menu de configurações
+
+## Correções
+
+- Melhorias internas
+- Melhorias na interface
+
+======================================================
+
 ## [1.5.0](https://github.com/hendrilmendes/Calculadora/compare/1.4.0..1.5.0)
 
 ## Alterações

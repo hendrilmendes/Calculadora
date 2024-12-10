@@ -16,22 +16,19 @@ class _DynamicColorsSettingsState extends State<DynamicColorsSettings> {
   Widget build(BuildContext context) {
     final themeModel = Provider.of<ThemeModel>(context);
 
-    return Card(
-      clipBehavior: Clip.hardEdge,
-      margin: const EdgeInsets.all(8.0),
-      child: ListTile(
-        title: Text(AppLocalizations.of(context)!.dynamicColors),
-        subtitle: Text(
-          AppLocalizations.of(context)!.dynamicColorsSub,
-        ),
-        trailing: Switch(
-          activeColor: Colors.blue,
-          value: themeModel.isDynamicColorsEnabled,
-          onChanged: (value) {
-            themeModel.toggleDynamicColors();
-            themeModel.saveDynamicPreference(value);
-          },
-        ),
+    return ListTile(
+      title: Text(AppLocalizations.of(context)!.dynamicColors),
+      subtitle: Text(
+        AppLocalizations.of(context)!.dynamicColorsSub,
+      ),
+      tileColor: Theme.of(context).listTileTheme.tileColor,
+      trailing: Switch(
+        activeColor: Colors.blue,
+        value: themeModel.isDynamicColorsEnabled,
+        onChanged: (value) {
+          themeModel.toggleDynamicColors();
+          themeModel.saveDynamicPreference(value);
+        },
       ),
     );
   }
