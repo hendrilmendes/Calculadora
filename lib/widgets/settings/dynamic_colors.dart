@@ -2,7 +2,6 @@ import 'package:calculadora/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
 class DynamicColorsSettings extends StatefulWidget {
   const DynamicColorsSettings({super.key});
 
@@ -23,11 +22,9 @@ class _DynamicColorsSettingsState extends State<DynamicColorsSettings> {
       ),
       tileColor: Theme.of(context).listTileTheme.tileColor,
       trailing: Switch(
-        activeColor: Colors.blue,
         value: themeModel.isDynamicColorsEnabled,
         onChanged: (value) {
           themeModel.toggleDynamicColors();
-          themeModel.saveDynamicPreference(value);
         },
       ),
     );

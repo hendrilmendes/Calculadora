@@ -101,16 +101,12 @@ class CalculatorButtons extends StatelessWidget {
   }
 
   Widget _buildButton(String buttonText) {
-    final bool isEqualButton = buttonText == '=';
-    final bool isOperationButton = _isOperation(buttonText);
-
     return Expanded(
       child: Padding(
         padding: EdgeInsets.all(isScientific ? 1.0 : 2.0),
         child: ElevatedButton(
           onPressed: () => onButtonPressed(buttonText),
           style: ElevatedButton.styleFrom(
-            backgroundColor: isEqualButton ? Colors.blue : null,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
             ),
@@ -120,16 +116,12 @@ class CalculatorButtons extends StatelessWidget {
           child: buttonText == 'DEL'
               ? Icon(
                   Icons.backspace_outlined,
-                  color: Colors.blue,
                   size: isScientific ? 20.0 : 24.0,
                 )
               : Text(
                   buttonText,
                   style: TextStyle(
                     fontSize: isScientific ? 20.0 : 24.0,
-                    color: isOperationButton && !isEqualButton
-                        ? Colors.blue
-                        : null,
                   ),
                 ),
         ),
@@ -157,9 +149,5 @@ class CalculatorButtons extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  bool _isOperation(String buttonText) {
-    return ['÷', '*', '-', '+', '%'].contains(buttonText);
   }
 }

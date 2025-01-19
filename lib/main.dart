@@ -9,7 +9,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 main() async {
@@ -59,7 +58,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    
     Updater.checkUpdateApp(context);
 
     return ChangeNotifierProvider(
@@ -74,22 +72,8 @@ class _MyAppState extends State<MyApp> {
             }
 
             return MaterialApp(
-              theme: ThemeData(
-                brightness: Brightness.light,
-                colorScheme: lightColorScheme?.copyWith(
-                  primary: themeModel.isDarkMode ? Colors.black : Colors.black,
-                ),
-                useMaterial3: true,
-                textTheme: Typography().black.apply(fontFamily: GoogleFonts.openSans().fontFamily),
-              ),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                colorScheme: darkColorScheme?.copyWith(
-                  primary: themeModel.isDarkMode ? Colors.white : Colors.black,
-                ),
-                useMaterial3: true,
-                textTheme: Typography().white.apply(fontFamily: GoogleFonts.openSans().fontFamily),
-              ),
+              theme: themeModel.lightTheme,
+              darkTheme: themeModel.darkTheme,
               themeMode: _getThemeMode(themeModel.themeMode),
               debugShowCheckedModeBanner: false,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
