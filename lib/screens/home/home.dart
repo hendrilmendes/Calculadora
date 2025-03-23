@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
         // Calcula o resultado enquanto o usuário digita
         try {
           String formattedInput = _input.replaceAll(',', '.');
+          // ignore: deprecated_member_use
           Parser p = Parser();
           Expression exp = p.parse(formattedInput);
           ContextModel cm = ContextModel();

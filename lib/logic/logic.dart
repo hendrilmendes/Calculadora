@@ -69,6 +69,7 @@ class CalculatorLogic {
           .replaceAll('tan', 'tan')
           .replaceAll('log', 'log');
 
+      // ignore: deprecated_member_use
       Parser p = Parser();
       Expression exp = p.parse(formattedInput);
       ContextModel cm = ContextModel();

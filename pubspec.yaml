@@ -18,7 +18,7 @@ dependencies:
   device_info_plus: ^11.2.1
   
 # Email
-  flutter_email_sender: ^6.0.3
+  flutter_email_sender: ^7.0.0
 
 # Feedback
   feedback:

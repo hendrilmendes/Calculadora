@@ -1,0 +1,2 @@
+C:/Users/Hendril/Documents/GitHub/Calculadora/android/app/.cxx/RelWithDebInfo/3u3p633e/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Hendril/Documents/GitHub/Calculadora/android/app/.cxx/RelWithDebInfo/3u3p633e/armeabi-v7a/CMakeFiles/rebuild_cache.dir

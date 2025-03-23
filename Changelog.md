@@ -2,13 +2,9 @@ Changelog
 
 ======================================================
 
-## [1.6.1](https://github.com/hendrilmendes/Calculadora/compare/1.6.0..1.6.1)
+## [1.6.2](https://github.com/hendrilmendes/Calculadora/compare/1.6.0..1.6.2)
 
 ## Alterações
-
-### Features
-
-- 
 
 ## Correções
 
