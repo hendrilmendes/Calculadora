@@ -5,7 +5,6 @@ import 'package:calculadora/widgets/settings/dynamic_colors.dart';
 import 'package:calculadora/widgets/settings/review.dart';
 import 'package:calculadora/widgets/settings/support.dart';
 import 'package:calculadora/widgets/settings/theme.dart';
-import 'package:calculadora/widgets/settings/update.dart';
 import 'package:flutter/material.dart';
 import 'package:calculadora/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -68,9 +67,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             context,
             Column(
               children: [
-                buildUpdateSettings(context),
                 buildReviewSettings(context),
                 buildSupportSettings(context),
+              ],
+            ),
+          ),
+          _buildSectionCard(
+            context,
+            Column(
+              children: [
                 buildAboutSettings(context),
               ],
             ),

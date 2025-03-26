@@ -231,18 +231,6 @@ abstract class AppLocalizations {
   /// **'O Dynamic Colors proporciona uma interface agradável de acordo com o seu papel de parede'**
   String get dynamicColorsSub;
 
-  /// No description provided for @update.
-  ///
-  /// In pt, this message translates to:
-  /// **'Atualizações'**
-  String get update;
-
-  /// No description provided for @updateSub.
-  ///
-  /// In pt, this message translates to:
-  /// **'Procurar por novas versões do app'**
-  String get updateSub;
-
   /// No description provided for @support.
   ///
   /// In pt, this message translates to:
@@ -306,7 +294,7 @@ abstract class AppLocalizations {
   /// No description provided for @noUpdateSub.
   ///
   /// In pt, this message translates to:
-  /// **'Tudo em dias parceiro 🤠'**
+  /// **'Você está usando a versão mais recente do app'**
   String get noUpdateSub;
 
   /// No description provided for @alreadyReviewed.

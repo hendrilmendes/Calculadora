@@ -42,35 +42,38 @@ class CalculatorLogic {
           String baseNumber = match.group(1)!;
           String operator = match.group(3)!;
           String percentNumber = match.group(4)!;
-          double result = double.parse(baseNumber);
-          if (operator == "-") {
-            result -=
-                (double.parse(baseNumber) * double.parse(percentNumber) / 100);
-          } else if (operator == "+") {
-            result +=
-                (double.parse(baseNumber) * double.parse(percentNumber) / 100);
-          } else if (operator == "*") {
-            result *=
-                (double.parse(baseNumber) * double.parse(percentNumber) / 100);
-          } else if (operator == "/") {
-            result /=
-                (double.parse(baseNumber) * double.parse(percentNumber) / 100);
+          double baseValue = double.parse(baseNumber);
+          double percentValue = double.parse(percentNumber);
+
+          double result = baseValue;
+          switch (operator.trim()) {
+            case '-':
+              result -= baseValue * (percentValue / 100);
+              break;
+            case '+':
+              result += baseValue * (percentValue / 100);
+              break;
+            case '*':
+              result *= (percentValue / 100);
+              break;
+            case '/':
+              result /= (percentValue / 100);
+              break;
+            default:
+              throw Exception('Operador inválido');
           }
           return result.toString();
         },
       );
 
-      // Substituir funções científicas com suas respectivas expressões
-      formattedInput = formattedInput
-          .replaceAll('√', 'sqrt(') + ')' 
-          .replaceAll('^', '**')
-          .replaceAll('sin', 'sin')
-          .replaceAll('cos', 'cos')
-          .replaceAll('tan', 'tan')
-          .replaceAll('log', 'log');
+      formattedInput = formattedInput.replaceAllMapped(
+        RegExp(r'√(\d+\.?\d*|\([^)]*\))'),
+        (match) => 'sqrt(${match.group(1)})',
+      );
 
-      // ignore: deprecated_member_use
-      Parser p = Parser();
+      formattedInput = formattedInput.replaceAll('^', '**');
+
+      GrammarParser p = GrammarParser();
       Expression exp = p.parse(formattedInput);
       ContextModel cm = ContextModel();
       double evalResult = exp.evaluate(EvaluationType.REAL, cm);

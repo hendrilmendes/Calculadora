@@ -1,0 +1,1 @@
+/home/hendril/Documentos/GitHub/Calculadora/build/app/intermediates/cxx/RelWithDebInfo/4673s626/obj/x86

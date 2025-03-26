@@ -2,6 +2,16 @@ Changelog
 
 ======================================================
 
+## [1.6.3](https://github.com/hendrilmendes/Calculadora/compare/1.6.2..1.6.3)
+
+## Alterações
+
+## Correções
+
+- Corrigido bug na lógica de calculos
+
+======================================================
+
 ## [1.6.2](https://github.com/hendrilmendes/Calculadora/compare/1.6.0..1.6.2)
 
 ## Alterações

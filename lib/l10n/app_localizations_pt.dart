@@ -78,12 +78,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dynamicColorsSub => 'O Dynamic Colors proporciona uma interface agradável de acordo com o seu papel de parede';
 
   @override
-  String get update => 'Atualizações';
-
-  @override
-  String get updateSub => 'Procurar por novas versões do app';
-
-  @override
   String get support => 'Suporte';
 
   @override
@@ -114,7 +108,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get noUpdate => 'Nenhuma atualização disponível';
 
   @override
-  String get noUpdateSub => 'Tudo em dias parceiro 🤠';
+  String get noUpdateSub => 'Você está usando a versão mais recente do app';
 
   @override
   String get alreadyReviewed => 'Você já avaliou o app';
