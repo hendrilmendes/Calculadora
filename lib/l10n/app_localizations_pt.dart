@@ -45,7 +45,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get openSource => 'Licenças de Código Aberto';
 
   @override
-  String get openSourceSub => 'Softwares de terceiros usados na construção do app';
+  String get openSourceSub =>
+      'Softwares de terceiros usados na construção do app';
 
   @override
   String get interface => 'Interface';
@@ -75,7 +76,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dynamicColors => 'Dynamic Colors';
 
   @override
-  String get dynamicColorsSub => 'O Dynamic Colors proporciona uma interface agradável de acordo com o seu papel de parede';
+  String get dynamicColorsSub =>
+      'O Dynamic Colors proporciona uma interface agradável de acordo com o seu papel de parede';
 
   @override
   String get support => 'Suporte';
