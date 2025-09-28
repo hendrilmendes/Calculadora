@@ -114,15 +114,10 @@ class CalculatorButtons extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: isScientific ? 12.0 : 20.0),
           ),
           child: buttonText == 'DEL'
-              ? Icon(
-                  Icons.backspace_outlined,
-                  size: isScientific ? 20.0 : 24.0,
-                )
+              ? Icon(Icons.backspace_outlined, size: isScientific ? 20.0 : 24.0)
               : Text(
                   buttonText,
-                  style: TextStyle(
-                    fontSize: isScientific ? 20.0 : 24.0,
-                  ),
+                  style: TextStyle(fontSize: isScientific ? 20.0 : 24.0),
                 ),
         ),
       ),

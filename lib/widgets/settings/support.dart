@@ -22,8 +22,9 @@ Widget buildSupportSettings(BuildContext context) {
     tileColor: Theme.of(context).listTileTheme.tileColor,
     onTap: () {
       BetterFeedback.of(context).show((feedback) async {
-        final screenshotFilePath =
-            await writeImageToStorage(feedback.screenshot);
+        final screenshotFilePath = await writeImageToStorage(
+          feedback.screenshot,
+        );
 
         final Email email = Email(
           body: feedback.text,

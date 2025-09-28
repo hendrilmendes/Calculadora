@@ -9,9 +9,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.history),
-      ),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.history)),
       body: history.isEmpty
           ? Center(
               child: Text(
@@ -22,9 +20,7 @@ class HistoryScreen extends StatelessWidget {
           : ListView.builder(
               itemCount: history.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(history[index]),
-                );
+                return ListTile(title: Text(history[index]));
               },
             ),
     );

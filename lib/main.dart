@@ -11,12 +11,10 @@ import 'package:calculadora/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
@@ -63,24 +61,25 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider(
       create: (_) => ThemeModel(),
       child: Consumer<ThemeModel>(
-        builder: (_, themeModel, __) {
+        builder: (_, themeModel, _) {
           return DynamicColorBuilder(
-              builder: (lightColorScheme, darkColorScheme) {
-            if (!themeModel.isDynamicColorsEnabled) {
-              lightColorScheme = null;
-              darkColorScheme = null;
-            }
+            builder: (lightColorScheme, darkColorScheme) {
+              if (!themeModel.isDynamicColorsEnabled) {
+                lightColorScheme = null;
+                darkColorScheme = null;
+              }
 
-            return MaterialApp(
-              theme: themeModel.lightTheme,
-              darkTheme: themeModel.darkTheme,
-              themeMode: _getThemeMode(themeModel.themeMode),
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              home: const HomePage(),
-            );
-          });
+              return MaterialApp(
+                theme: themeModel.lightTheme,
+                darkTheme: themeModel.darkTheme,
+                themeMode: _getThemeMode(themeModel.themeMode),
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                home: const HomePage(),
+              );
+            },
+          );
         },
       ),
     );

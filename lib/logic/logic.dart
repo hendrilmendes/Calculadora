@@ -35,7 +35,6 @@ class CalculatorLogic {
     try {
       String formattedInput = input.replaceAll(',', '.');
 
-      // Regex para encontrar números seguidos por percentuais (ex: 100-10%)
       formattedInput = formattedInput.replaceAllMapped(
         RegExp(r'(\d+(\.\d+)?)(\s*[-+*/]\s*)(\d+(\.\d+)?)%'),
         (match) {

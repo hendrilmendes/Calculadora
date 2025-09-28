@@ -5,10 +5,7 @@ import 'package:calculadora/l10n/app_localizations.dart';
 class ThemeSettings extends StatelessWidget {
   final ThemeModel themeModel;
 
-  const ThemeSettings({
-    super.key,
-    required this.themeModel,
-  });
+  const ThemeSettings({super.key, required this.themeModel});
 
   void _showThemeDialog(BuildContext context, ThemeModel themeModel) {
     final appLocalizations = AppLocalizations.of(context);

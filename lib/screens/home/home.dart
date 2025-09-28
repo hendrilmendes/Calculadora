@@ -90,9 +90,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.appName,
-          style: const TextStyle(
-            fontSize: 24.0,
-          ),
+          style: const TextStyle(fontSize: 24.0),
         ),
         actions: <Widget>[
           PopupMenuButton<int>(
@@ -162,9 +160,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
         ],
       ),
     );

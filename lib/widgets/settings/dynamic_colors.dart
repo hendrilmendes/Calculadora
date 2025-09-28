@@ -2,6 +2,7 @@ import 'package:calculadora/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:calculadora/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 class DynamicColorsSettings extends StatefulWidget {
   const DynamicColorsSettings({super.key});
 
@@ -17,9 +18,7 @@ class _DynamicColorsSettingsState extends State<DynamicColorsSettings> {
 
     return ListTile(
       title: Text(AppLocalizations.of(context)!.dynamicColors),
-      subtitle: Text(
-        AppLocalizations.of(context)!.dynamicColorsSub,
-      ),
+      subtitle: Text(AppLocalizations.of(context)!.dynamicColorsSub),
       tileColor: Theme.of(context).listTileTheme.tileColor,
       trailing: Switch(
         value: themeModel.isDynamicColorsEnabled,

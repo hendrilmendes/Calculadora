@@ -74,32 +74,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           _buildSectionCard(
             context,
-            Column(
-              children: [
-                buildAboutSettings(context),
-              ],
-            ),
+            Column(children: [buildAboutSettings(context)]),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSectionCard(
-    BuildContext context,
-    Widget child,
-  ) {
+  Widget _buildSectionCard(BuildContext context, Widget child) {
     return Card(
       clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: Theme.of(context).listTileTheme.tileColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          child,
-        ],
+        children: [child],
       ),
     );
   }
